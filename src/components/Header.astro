@@ -1,14 +1,71 @@
 <header
-  class="bg-gray-900 text-white px-8 py-4 flex items-center justify-between"
+  class="bg-primary text-white px-24 py-8 flex items-center justify-between"
 >
-  <!-- Logo ou nom du site -->
-  <a href="/" class="text-xl font-bold">MonSite</a>
+  <!-- Logo -->
+  <a href="/" class="text-xl font-bold">Votre PME et Moi</a>
 
-  <!-- Navigation -->
-  <nav class="space-x-6">
+  <!-- Hamburger bouton -->
+  <button id="menu-toggle" class="md:hidden focus:outline-none">
+    <svg
+      class="w-8 h-8"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      viewBox="0 0 24 24"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M4 6h16M4 12h16M4 18h16"></path>
+    </svg>
+  </button>
+
+  <!-- Menu desktop -->
+  <nav class="hidden md:flex space-x-10">
     <a href="/" class="hover:text-gray-300">Accueil</a>
-    <a href="/about" class="hover:text-gray-300">À propos</a>
-    <a href="/services" class="hover:text-gray-300">Services</a>
+    <a href="/apropos" class="hover:text-gray-300">À propos</a>
+    <a href="/mesprestations" class="hover:text-gray-300">Services</a>
     <a href="/contact" class="hover:text-gray-300">Contact</a>
   </nav>
 </header>
+
+<!-- Menu mobile fullscreen -->
+<div
+  id="mobile-menu"
+  class="fixed inset-0 bg-primary text-white flex flex-col items-center justify-center gap-6 text-2xl
+         opacity-0 -translate-y-full pointer-events-none transition-all duration-300"
+>
+  <a href="/" class="hover:text-gray-300 block">Accueil</a>
+  <a href="/apropos" class="hover:text-gray-300 block">À propos</a>
+  <a href="/mesprestations" class="hover:text-gray-300 block">Services</a>
+  <a href="/contact" class="hover:text-gray-300 block">Contact</a>
+  <button id="menu-close" class="mt-10 block">Fermer</button>
+</div>
+
+<script>
+  const toggle = document.getElementById("menu-toggle");
+  const close = document.getElementById("menu-close");
+  const menu = document.getElementById("mobile-menu");
+
+  if (menu && toggle) {
+    toggle.addEventListener("click", () => {
+      menu.classList.remove(
+        "opacity-0",
+        "-translate-y-full",
+        "pointer-events-none",
+      );
+      menu.classList.add("opacity-100", "translate-y-0");
+    });
+  }
+
+  if (menu && close) {
+    close.addEventListener("click", () => {
+      menu.classList.remove("opacity-100", "translate-y-0");
+      menu.classList.add(
+        "opacity-0",
+        "-translate-y-full",
+        "pointer-events-none",
+      );
+    });
+  }
+</script>
